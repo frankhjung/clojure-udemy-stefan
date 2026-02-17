@@ -1,0 +1,39 @@
+---
+image: clojure:temurin-11-lein-2.10.0-alpine
+
+include:
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Security/Secret-Detection.gitlab-ci.yml
+
+variables:
+  SECRET_DETECTION_ENABLED: "true"
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .m2/repository
+
+stages:
+  - test
+  - secret-detection
+  - build-test-run
+
+sast:
+  stage: test
+
+secret_detection:
+  stage: secret-detection
+
+build-test-run:
+  stage: build-test-run
+  script: |
+    lein with-profile cicd \
+    do clean, \
+    check, \
+    compile, \
+    test, \
+    run "foo" "bar"
+  only:
+    changes:
+      - "**/*.clj"
+      - .gitlab-ci.yml
