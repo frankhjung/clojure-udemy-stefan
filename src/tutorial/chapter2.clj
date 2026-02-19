@@ -1,15 +1,17 @@
 (ns tutorial.chapter2
-  (:gen-class)
+  "This namespace contains functions to randomly generate inputs for chapters 3 and 4."
   (:require
-   [clojure.string :as str]
-   [tutorial.chapter3 :refer [human-age]]
-   [tutorial.chapter4 :refer [list-affordable-cars DISCOUNT20 cars]]))
+   [tutorial.chapter3 :refer [animals]]
+   [tutorial.chapter4 :refer [DISCOUNT10 DISCOUNT20]]))
 
-(defn -main
-  "Example of a main function in Clojure."
-  [& args]
-  (println "Received arguments:" (vec args))
-  (let [age 3
-        animal :dog]
-    (println "Human age for a" (str/lower-case (name animal)) "of age" age "is" (human-age animal age) "in human years."))
-  (list-affordable-cars cars 50000 DISCOUNT20))
+(defn random-animal []
+  (rand-nth animals))
+
+(defn random-age []
+  (rand-int 10))
+
+(defn random-coupon []
+  (rand-nth [DISCOUNT10 DISCOUNT20 DISCOUNT20]))
+
+(defn random-budget []
+  (rand-nth (range 10000 100000 1000)))

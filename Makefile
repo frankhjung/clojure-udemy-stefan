@@ -21,7 +21,7 @@ test:
 	$(LEIN) test
 
 run:
-	$(LEIN) run -m tutorial.chapter2 "foo" "bar"
+	$(LEIN) run "foo" "bar"
 
 show-profiles:
 	@echo "Project :profiles from project.clj:"

@@ -15,8 +15,7 @@
   {DISCOUNT20 0.20})
 
 (defn discount
-  "Return discount rate (0.0-1.0) for a coupon. Coupons are
-   looked up in the `coupons` map; unknown coupons return 0.0."
+  "Return discount rate (1.0 - discount-rate) for a coupon. Coupons are looked up in the `coupons` map; unknown coupons return 0.0 (inactive)."
   [coupon]
   (get coupons coupon 0.0))
 
