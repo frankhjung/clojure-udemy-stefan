@@ -4,6 +4,7 @@
   :license {:name "MIT License"
             :url "https://spdx.org/licenses/MIT.html"}
   :dependencies [[org.clojure/clojure "1.12.1"]]
+  :test-paths ["test"]
   :main ^:skip-aot tutorial.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}
