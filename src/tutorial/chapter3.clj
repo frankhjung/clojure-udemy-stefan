@@ -1,25 +1,23 @@
-(ns tutorial.chapter3)
+(ns tutorial.chapter3
+  (:require [clojure.string :as str]))
 
 ;; Chapter 3 Basics
 ;;
-;; Create a function that returns the humand age equivalent for an animal.
-;; Where:
-;; Dog => 7 x age = human age equivalent
-;; Cat => 5 x age = human age equivalent
-;; Fish => 10 x age = human age equivalent
-
-;; Define a map that contains the animal type and the age multiplier (unqualified symbols are used as keys).
-
-;; Age multipliers are defined as partial functions that return the human age equivalent given the animal's age.
-(def ages {'Dog (partial * 7)
-           'Cat (partial * 5)
-           'Fish (partial * 10)})
+;; Use keywords as map keys (idiomatic) and accept keywords,
+;; symbols, or strings for the `animal` argument.
+(def ages {:dog (partial * 7)
+           :cat (partial * 5)
+           :fish (partial * 10)})
 
 (defn human-age
-  "This function takes an animal and its age and returns the human age equivalent. It throws an exception if the animal is unknown."
+  "Return human age equivalent for `animal` given numeric `age`.
+  `animal` may be a keyword, symbol, or string (case-insensitive)."
   [animal age]
-  (let [key (symbol (name animal))
-        f (clojure.core/get ages key)]
-    (if (fn? f)
+  (let [k (cond
+            (keyword? animal) animal
+            (string? animal)  (keyword (str/lower-case animal))
+            :else             (keyword (str/lower-case (name animal))))
+        f (get ages k)]
+    (if f
       (f age)
       (throw (ex-info (str "Unknown animal: " animal) {:animal animal})))))
