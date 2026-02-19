@@ -2,7 +2,7 @@
 
 LEIN = lein with-profile cicd
 
-.PHONY: default clean check compile test show-profiles
+.PHONY: default clean check compile test show-profiles run
 
 default: clean check compile test
 
@@ -17,6 +17,9 @@ compile:
 
 test:
 	$(LEIN) test
+
+run:
+	$(LEIN) run -m tutorial.chapter2 "foo" "bar"
 
 show-profiles:
 	@echo "Project :profiles from project.clj:"
