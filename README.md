@@ -29,7 +29,7 @@ provided. You can typically run `make` commands from your terminal. For example:
 ```bash
 make build
 make test
-make run
+make run foo bar
 ```
 
 Please refer to the `Makefile` itself for a complete list of available commands.

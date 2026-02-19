@@ -32,7 +32,7 @@ build-test-run:
     check, \
     compile, \
     test, \
-    run "foo" "bar"
+    run foo bar
   only:
     changes:
       - "**/*.clj"
