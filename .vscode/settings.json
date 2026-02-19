@@ -22,6 +22,7 @@
       }
     }
   ],
+  "calva.replConnectSequencesDefault": 0,
   // The below settings are more suitible for User settings.
   // They are included here to make it easier to write guides
   // about how to use the project.

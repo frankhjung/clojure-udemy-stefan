@@ -2,9 +2,11 @@
 
 LEIN = lein with-profile cicd
 
-.PHONY: default clean check compile test show-profiles run
+.PHONY: all default clean check compile test show-profiles run
 
 default: clean check compile test
+
+all: default run
 
 clean:
 	$(LEIN) clean
