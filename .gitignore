@@ -11,12 +11,5 @@ deps.edn
 .lein-*
 .lsp/
 .nrepl-port
-.nrepl-port/
-profiles.clj
-src/get_started/hello_paredit.clj
-src/get_started/hello_repl.clj
-src/get_started/welcome_to_clojure.clj
-src/tutorial/core.clj
 .*.swp
 target/
-.vscode

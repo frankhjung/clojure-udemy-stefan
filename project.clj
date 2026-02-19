@@ -5,7 +5,7 @@
             :url "https://spdx.org/licenses/MIT.html"}
   :dependencies [[org.clojure/clojure "1.12.1"]]
   :test-paths ["test"]
-  :main ^:skip-aot tutorial.core
+  :main ^:skip-aot tutorial.chapter2
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}
              :cicd {}}
