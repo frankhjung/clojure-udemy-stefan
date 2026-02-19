@@ -13,10 +13,7 @@
   "Return human age equivalent for `animal` given numeric `age`.
   `animal` may be a keyword, symbol, or string (case-insensitive)."
   [animal age]
-  (let [k (cond
-            (keyword? animal) (keyword (str/lower-case (name animal)))
-            (string? animal)  (keyword (str/lower-case animal))
-            :else             (keyword (str/lower-case (name animal))))
+  (let [k (keyword (str/lower-case (name animal)))
         f (get ages k)]
     (if f
       (f age)
