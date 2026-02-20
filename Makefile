@@ -20,8 +20,12 @@ compile:
 test:
 	$(LEIN) test
 
+# Continuous test runner (detailed failures, auto-rerun on file change)
+test-refresh:
+	$(LEIN) test-refresh
+
 run:
-	$(LEIN) run "foo" "bar"
+	$(LEIN) run foo bar
 
 show-profiles:
 	@echo "Project :profiles from project.clj:"

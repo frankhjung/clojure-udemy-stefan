@@ -4,6 +4,7 @@
   :license {:name "MIT License"
             :url "https://spdx.org/licenses/MIT.html"}
   :dependencies [[org.clojure/clojure "1.12.1"]]
+  :plugins [[com.jakemccrary/lein-test-refresh "0.24.1"]]
   :test-paths ["test"]
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}

@@ -33,3 +33,15 @@ make run foo bar
 ```
 
 Please refer to the `Makefile` itself for a complete list of available commands.
+
+## Run
+
+The main function in `tutorial.core` generates random data and demonstrates the
+functionality of the other chapters. You can run it using
+`lein run -m tutorial.core` or `make run`.
+
+## Resources
+
+- [Clojure Documentation](https://clojure.org/documentation)
+- [Clojure Cheatsheet](https://clojure.org/api/cheatsheet)
+- [Course GitHub Repository](https://www.udemy.com/user/catalinstefan2)

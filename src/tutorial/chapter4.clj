@@ -38,4 +38,4 @@
   (println (if (pos? (discount coupon)) "Coupon is valid" "Coupon is invalid"))
   (println "Budget is" budget)
   (doseq [car (affordable-cars cars budget coupon)]
-    (println (str (:type car) "\t" (:final-price car)))))
+    (println (str "  - " (:type car) ": " (:final-price car)))))
