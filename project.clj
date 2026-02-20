@@ -9,4 +9,8 @@
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}
              :cicd {:main ^:skip-aot tutorial.core}}
+  :repl-options {:init (do (require 'tutorial.chapter3-test)
+                           (require 'tutorial.chapter4-test)
+                           (require 'tutorial.chapter5-test)
+                           (require 'tutorial.chapter6-test))}
   :min-lein-version "2.0.0")

@@ -26,3 +26,10 @@
           affordable (affordable-cars cars budget coupon)]
       (is (= 1 (count affordable)))
       (is (some #(= "FIAT" (:type %)) affordable)))))
+
+(deftest coupons-discovery-test
+  (testing "`coupons` map is auto-built from vars with `:active true` meta"
+    (let [coupons (-> (ns-interns 'tutorial.chapter4) (get 'coupons) deref)]
+      (is (contains? coupons DISCOUNT20))
+      (is (not (contains? coupons DISCOUNT10)))
+      (is (= 0.20 (get coupons DISCOUNT20))))))

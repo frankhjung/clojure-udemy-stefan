@@ -6,14 +6,15 @@
 ;; Use keywords as map keys (idiomatic) and accept keywords,
 ;; symbols, or strings for the `animal` argument.
 (def animal-multipliers
+  "Multipliers for converting animal age to human age."
   {:dog 7
    :cat 5
    :fish 10})
 
-(def animals (keys animal-multipliers))
+(def animals "List of animals." (keys animal-multipliers))
 
 (defn human-age
-  "Return human age equivalent for `animal` given numeric `age`.
+  "Return human age equivalent for `animal` given numeric `age`. Where
   `animal` may be a keyword, symbol, or string (case-insensitive)."
   [animal age]
   (let [k (keyword (str/lower-case (name animal)))

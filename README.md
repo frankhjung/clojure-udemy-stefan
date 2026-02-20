@@ -40,6 +40,12 @@ The main function in `tutorial.core` generates random data and demonstrates the
 functionality of the other chapters. You can run it using
 `lein run -m tutorial.core` or `make run`.
 
+## REPL
+
+To open the Calva REPL window press CTL-ALT-o-r or use the command palette
+(CTL-SHIFT-p) and search for "Calva: Open REPL Window". This will open a new
+REPL window where you can interact with your Clojure code.
+
 ## Resources
 
 - [Clojure Documentation](https://clojure.org/documentation)

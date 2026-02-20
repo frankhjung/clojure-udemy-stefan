@@ -1,18 +1,25 @@
  (ns tutorial.chapter4)
 
-;; Simple car inventory.
-(def cars [{:type "BMW" :price 60000}
-           {:type "FERRARI" :price 100000}
-           {:type "FIAT" :price 20000}])
+(def cars
+  "Simple car inventory."
+  [{:type "BMW" :price 60000}
+   {:type "FERRARI" :price 100000}
+   {:type "FIAT" :price 20000}])
 
 ;; Export constants so tests can reference them. Only DISCOUNT20
-;; is a valid coupon in the `coupons` map; DISCOUNT10 is left
+;; is an active coupon in the `coupons` map; DISCOUNT10 is left
 ;; available as a symbol but not present in `coupons` (returns 0.0).
-(def ^{:doc "20% discount coupon"} DISCOUNT20 :DISCOUNT20)
-(def ^{:doc "10% discount coupon (inactive)"} DISCOUNT10 :DISCOUNT10)
+(def ^{:active true :rate 0.20} DISCOUNT20 "20% discount coupon" :DISCOUNT20)
+(def ^{:active false :rate 0.10} DISCOUNT10 "10% discount coupon" :DISCOUNT10)
 
 (def ^:private coupons
-  {DISCOUNT20 0.20})
+  "Map of active coupons to their discount rates; auto-discovered from var metadata."
+  (->> (ns-interns *ns*)                     ;; get interned vars in this namespace
+       vals
+       (filter #(and (:active (meta %)) (:rate (meta %)))) ;; only active coupons with a rate
+       (map (fn [v] [@v (:rate (meta v))])) ;; map var value (e.g. :DISCOUNT20) to rate
+       (into {}) ;; create a map of coupon to discount rate
+       ))
 
 (defn discount
   "Return discount rate (1.0 - discount-rate) for a coupon. Coupons are looked up in the `coupons` map; unknown coupons return 0.0 (inactive)."

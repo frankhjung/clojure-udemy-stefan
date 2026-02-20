@@ -12,11 +12,12 @@
 ;; remaining budget.
 
 (def ^:const items-for-sale
+  "Items for sale."
   {:pen      1.00
    :notepad  5.00
    :backpack 10.00})
 
-(def items (keys items-for-sale))
+(def items "List of items for sale." (keys items-for-sale))
 
 (defn purchase-item
   "Attempt to purchase an item given the current budget.
