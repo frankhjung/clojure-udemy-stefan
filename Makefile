@@ -1,18 +1,24 @@
 # Makefile for running Leiningen tasks under the `cicd` profile
 
-LEIN = lein with-profile cicd
+LEIN = lein with-profile dev
+LEIN_CICD = lein with-profile cicd
 
-.PHONY: all default clean check compile test show-profiles run
+.PHONY: default clean fmt check compile test cicd-test cicd-clean show-profiles
 
-default: clean check compile test
+default: clean fmt check compile test
 
-all: default run
+#
+# Local development targets
+#
 
 clean:
 	$(LEIN) clean
 
+fmt:
+	$(LEIN) cljfmt fix
+
 check:
-	$(LEIN) check
+	$(LEIN) cljfmt check
 
 compile:
 	$(LEIN) compile
@@ -20,13 +26,22 @@ compile:
 test:
 	$(LEIN) test
 
-# Continuous test runner (detailed failures, auto-rerun on file change)
-test-refresh:
-	$(LEIN) test-refresh
-
 run:
 	$(LEIN) run foo bar
 
+#
+# Targets for CI/CD pipelines (GitHub/GitLab)
+#
+
+cicd-clean:
+	$(LEIN_CICD) clean
+
+cicd-test:
+	$(LEIN_CICD) eftest
+
+#
+# Utility target to show the :profiles section of project.clj for debugging purposes.
+#
 show-profiles:
 	@echo "Project :profiles from project.clj:"
-	@sed -n '/:profiles/,/}/p' project.clj
+	@grep -n ":profiles" -A20 project.clj | sed 's/^/    /'

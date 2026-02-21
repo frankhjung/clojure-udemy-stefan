@@ -19,5 +19,5 @@
 (deftest unknown-animal-test
   (testing "human-age throws for unknown animals"
     (is (thrown-with-msg? clojure.lang.ExceptionInfo
-                #"Unknown animal"
-                (human-age :horse 1)))))
+                          #"Unknown animal"
+                          (human-age :horse 1)))))
